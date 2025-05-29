@@ -28,12 +28,12 @@ int minPointsCover(vector<Segment> &segments)
     int points = 0;
     int last_point = -1e9;
 
-    for (const auto &seg : segments)
+    for (size_t i = 0; i < segments.size(); i++)
     {
-        if (seg.left > last_point)
+        if (segments[i].left > last_point)
         {
             points++;
-            last_point = seg.right;
+            last_point = segments[i].right;
         }
     }
 
@@ -42,8 +42,6 @@ int minPointsCover(vector<Segment> &segments)
 
 int main()
 {
-    cout << "Текущая папка: " << filesystem::current_path() << endl;
-
     ifstream file("First_task/data_prog_contest_problem_1.txt");
 
     if (!file.is_open())
@@ -53,7 +51,7 @@ int main()
     }
 
     int n;
-    cout << n << endl;
+    file >> n;
 
     vector<Segment> segments(n);
 
@@ -67,7 +65,7 @@ int main()
 
     int result = minPointsCover(segments);
 
-    cout << "Минимальное количество точек: " << result << endl;
+    cout << result << endl;
 
     return 0;
 }

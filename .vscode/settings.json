@@ -1,0 +1,47 @@
+{
+    // Общие настройки редактора
+    "workbench.colorTheme": "Visual Studio Dark",
+    "workbench.editor.empty.hint": "hidden",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.inlineSuggest.showToolbar": "onHover",
+    // Настройки Git
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    // Отключение встроенного IntelliSense (используем clangd)
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "C_Cpp.default.compilerPath": "",
+    // Настройки clangd
+    "clangd.path": "/usr/bin/clangd",
+    "clangd.arguments": [
+        "--background-index",
+        "--clang-tidy",
+        "--completion-style=detailed",
+        "--header-insertion=never",
+        "--query-driver=/usr/bin/clang++" // Указываем путь к компилятору
+    ],
+    // Настройки clang-format
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+    "editor.formatOnSave": true,
+    "clang-format.style": "file", // Использует .clang-format из проекта
+    "clang-format.fallbackStyle": "Google",
+    // Настройки CMake (если используется)
+    "cmake.showOptionsMovedNotification": false,
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
+    ],
+    "cmake.configureOnOpen": true,
+    "cmake.generator": "Ninja",
+    // Настройки AI-помощников (Copilot/Bito)
+    "github.copilot.editor.enableAutoCompletions": true,
+    "bitoAI.codeCompletion.enableCommentToCode": true,
+    "bitoAI.codeCompletion.enableAutoCompletion": false,
+    "bitoAI.appearance.fontSize (Match with IDE Font)": false,
+    // Дополнительные инструменты (опционально)
+    "docker.extension.dockerEngineAvailabilityPrompt": false,
+    "cortex-debug.armToolchainPath": "/bin",
+    "cortex-debug.gdbPath": "/bin/gdb-multiarch",
+    "cortex-debug.variableUseNaturalFormat": false
+}

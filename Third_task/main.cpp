@@ -1,40 +1,36 @@
+#include <gmpxx.h> // Используем C++ API для GMP
 #include <iostream>
 #include <vector>
 
-std::vector<double> map;
-double Recursive(int n)
-{
-    if (n != map.size())
-    {
-        return map[n];
-    }
-    if (n == 0)
-    {
-        return 1;
-    }
-    if (n == 1)
-    {
-        return 3;
-    }
-
-    return map[n] = 5 * Recursive(n - 1) + Recursive(n - 2);
-}
+// Проверка на нечётность
+bool isOdd(const mpz_class &num) { return num % 2 != 0; }
 
 int main()
 {
-    std::vector<double> arr;
-    int n = 0;
-    double value = 0;
-    while (arr.size() < 11)
-    {
-        value = Recursive(n);
+    mpz_class F_prev2 = 1; // F(0)
+    mpz_class F_prev1 = 3; // F(1)
+    mpz_class F_curr;
 
-        if ((int)value % 2 != 0)
+    std::vector<mpz_class> oddValues;
+
+    if (isOdd(F_prev2))
+        oddValues.push_back(F_prev2);
+    if (isOdd(F_prev1))
+        oddValues.push_back(F_prev1);
+
+    while (oddValues.size() < 40)
+    {
+        F_curr = 5 * F_prev1 + F_prev2;
+
+        if (isOdd(F_curr))
         {
-            arr.push_back(value);
+            oddValues.push_back(F_curr);
         }
-        n++;
+
+        F_prev2 = F_prev1;
+        F_prev1 = F_curr;
     }
-    std::cout << arr[10] << std::endl;
+
+    std::cout << "A[39] = " << oddValues[39] << std::endl;
     return 0;
 }
